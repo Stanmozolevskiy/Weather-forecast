@@ -34,7 +34,7 @@ export class WeatherComponent implements OnInit {
   //because the free version alows you to do 250 calls
   private getTheData(){
     const key1:string = "access_key=435785ba3893e6cc6bfdba4d894252f0";
-    const key2:string = "access_key=8e443c423702739b3e03b494da5ffc0a//";
+    const key2:string = "access_key=8e443c423702739b3e03b494da5ffc0a";
     return  this.dataService.get(this.defaultCity, key1).subscribe(res=>{
       if(res.error.info){
         this.dataService.get(this.defaultCity, key2).subscribe(res=>{
