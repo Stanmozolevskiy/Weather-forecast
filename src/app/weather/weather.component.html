@@ -1,0 +1,78 @@
+<section class="vh-100" style="background-color: #C1CFEA;"  *ngIf='weather'>
+    <div class="alert alert-primary row justify-content-center align-items-center h-100" role="alert" *ngIf='isAPILimitReached'>
+        We apologise for inconvinience but the limit for 
+        <a href="https://weatherstack.com/product" style="margin-left: 5px; margin-right: 5px;" class="alert-link" >API calls
+        </a> has been reached. Please try again later.
+      </div>
+    <div class="row justify-content-center align-items-center h-100" style="color: #282828; margin-left: 0px !important;
+        margin-right: 0px !important;" >
+        <div class="col-md-9 col-lg-7 col-xl-5">
+            
+        <form (ngSubmit)="onSubmit()" [formGroup]="cityForm" *ngIf='!isAPILimitReached'>
+            <div class="container">
+                <div class="row height d-flex justify-content-center align-items-center">
+                    <div class="col-md-6">
+
+                        <div class="form">
+                            <i class="fa fa-search"></i> 
+                            <input type="text" class="form-control form-input" formControlName="city" placeholder="city and state..."> 
+                            <span class="left-pan" (click)='onSubmit()'>
+                                 <i class="fa fa-microphone" ></i> 
+                            </span> 
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    <div class="container py-5 h-100"  *ngIf='!isAPILimitReached'>
+            <div class="card mb-4 gradient-custom" style="border-radius: 25px;">
+            <div class="card-body p-4">
+  
+              <div id="demo1" class="carousel slide" data-ride="carousel">
+     
+                <!-- Carousel inner -->
+                <div class="carousel-inner">
+                  <div class="carousel-item active">
+                    <div class="d-flex justify-content-between mb-4 pb-2">
+                      <div>
+                        <h2 class="display-2"><strong> {{weather.current.temperature}}°F</strong></h2>
+                        <p class="text-muted mb-0">{{weather.current.weather_descriptions[0]}}</p>
+                        <p class="text-muted mb-0">{{weather.location.name}}, {{weather.location.region}}</p>
+                      </div>
+                      <div>
+                        <img src="https://mdbootstrap.com/img/Photos/new-templates/bootstrap-weather/ilu3.png"
+                          width="150px">
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+  
+            </div>
+
+            <div class="d-flex align-items-center" style="padding-bottom: 20px;">
+                
+                
+                <div class="flex-grow-1" style="font-size: 1rem;">
+                    <div style="margin-left: 25px;"><i  class="far fa-clock" style="color: black;"></i>
+                        <span class="ms-1">{{weather.location.localtime.split(" ")[1]}}</span>
+                    </div>
+                    <div style="margin-left: 25px;"><i class="fas fa-wind fa-fw" style="color: black; "></i> 
+                        <span class="ms-1">{{weather.current.wind_speed}} mile/h  {{weather.current.wind_dir}}</span>
+                    </div>
+                    <div style="margin-left: 25px;"><i class="fas fa-tint fa-fw" style="color: black;"></i> 
+                        <span class="ms-1"> {{weather.current.humidity}}% </span>
+                    </div>
+                    <div style="margin-left: 25px;"><i class="fas fa-sun fa-fw" style="color: black;"></i>
+                        <span class="ms-1">{{weather.current.observation_time}} </span>
+                    </div>
+                </div>
+            </div>
+            
+          </div>
+  
+        </div>
+      </div>
+  
+    </div>
+  </section>
